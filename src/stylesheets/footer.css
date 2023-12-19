@@ -1,0 +1,132 @@
+footer {
+    width: 100%;
+    padding: 4rem 0px;
+    background: black;
+    color: white;
+
+    position: relative;
+    z-index: 1;
+}
+
+footer>* a:hover {
+    color: var(--clr-light-theme) !important;
+}
+
+.footer-wrapper {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.footer-grider {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 22%));
+    grid-gap: 25px;
+    justify-content: space-between;
+}
+
+.footer-columns {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 90%;
+    margin: auto;
+}
+
+.footer-columns:nth-child(2) {
+    gap: 25px;
+}
+
+.socialsList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.socialsList > a:hover {
+    color: var(--clr-light-theme);
+}
+
+.socialsList .footerLinks {
+    padding: 0.7rem;
+    border: 1px solid var(--clr-grey);
+    border-radius: 50%;
+    transform: scale(0.8);
+}
+
+.footerDesc,
+.footerDesc * {
+    color: var(--clr-grey);
+}
+
+.footerLinks {
+    display: inline-block;
+
+    color: var(--clr-grey);
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-decoration: none;
+
+    line-height: 1rem;
+}
+
+
+#eventsDropDown {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--clr-grey);
+}
+
+#dropDownItems>* {
+    display: block;
+    margin: 0.5rem;
+}
+
+#dropDownItem {
+    color: var(--clr-grey);
+}
+
+@media only screen and (max-width: 1700px) {
+    .footer-wrapper {
+        width: 90%;
+    }
+
+    .footer-grider {
+        grid-template-columns: repeat(auto-fill, minmax(16rem, 22%));
+    }
+}
+
+@media only screen and (max-width: 1080px) {
+    .footer-wrapper {
+        width: 65%;
+    }
+
+    footer * {
+        text-align: center;
+    }
+
+    .footer-grider {
+        grid-template-columns: repeat(auto-fill, minmax(14rem, 100%));
+        grid-gap: 35px;
+    }
+
+    .footer-columns {
+        width: 95%;
+        align-items: center;
+    }
+
+    .footer-columns:nth-child(2) {
+        gap: 35px;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .footer-wrapper {
+        width: 95%;
+    }
+}

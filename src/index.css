@@ -1,0 +1,139 @@
+/* TODO: Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Poppins:wght@300;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+
+    box-sizing: inherit;
+}
+
+:root {
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
+
+    
+    /* colors */
+
+    --clr-grey: hsla(0,0%,100%,.507);
+
+    --clr-application-main: #93278f;
+    --clr-application-main2: #460D86;
+    --clr-application-main-blur: rgba(96, 36, 96, 0.418);
+    --clr-application-black: #333333;
+
+    /* light mode themes */
+    --clr-light-bg: white;
+    --clr-light-theme: rgb(146, 146, 250);
+    
+    /* dark mode themes */
+    --clr-dark-bg: #333333;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background-color: var(--clr-light-bg);
+}
+
+*::selection {
+    background-color: var(--clr-light-theme);
+    color: white;
+}
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+button {
+    /* border: none; */
+    background: none;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style-type: none;
+}
+
+/* utility classes */
+
+.hide,
+.hide>* {
+    display: none;
+}
+
+.container {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    min-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.row {
+    --bs-gutter-x: 1rem;
+    --bs-gutter-y: 0;
+    /* width: 100%; */
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+}
+
+.row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    margin-top: var(--bs-gutter-y);
+}
+
+.col {
+    flex: 1 0;
+}
+
+.application-button {
+    border-radius: 5px;
+    
+    padding: 0.5rem 0.3rem;
+
+    background-color: dodgerblue;
+    color: white;
+}
+
+.application-button:hover {
+    background-color: rgb(7, 129, 252);
+}
+
+.heading {
+    color: inherit;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.color-application {
+    color: var(--clr-application-main) !important;
+}
+
+input, textarea {
+    border: 2px solid var(--clr-application-main);
+    padding: 5px 10px;
+    border-radius: 20px;
+}

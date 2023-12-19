@@ -1,0 +1,25 @@
+.idea_card {
+    height: 20rem;
+    background-color: var(--clr-application-main);
+    border-radius: 1rem;
+}
+
+.solution-card {
+    height: 20rem;
+    background-color: #E1C6FF;
+    border-radius: 1rem;
+}
+
+.icon__wrapper > * {
+    background-color: white;
+    color: var(--clr-application-main);
+    padding: 1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+.icon_invert > * {
+    color: white;
+    background-color: var(--clr-application-main);
+}
