@@ -1,46 +1,42 @@
 import { useEffect } from 'react'
-import { Outlet, useNavigate, Link } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 
 import "./../../stylesheets/auth.css";
 
-import { useUserAuth } from '../../context/UserAuthContext';
+import { useSelector } from 'react-redux';
 
-const AuthLayout = () => {
+const AuthLayout = ({ setOnPage }) => {
+	
 	const navigate = useNavigate()
 
-	const { user: authUser } = useUserAuth()
+	const authUser = useSelector(state => state.user.userInfo)
+
+	const normalizedPath = window.location.pathname.replace(/\/+$/, '');
+	const authPaths = ['/auth/login', '/auth/signup', '/auth/reset'].map(path =>
+		path.replace(/\/+$/, '')
+	);
 
 	useEffect(() => {
-		if (window.location.pathname === '/auth') {
+		if (normalizedPath === '/auth') {
 			if (authUser) {
-				navigate('user')
+				return navigate('user');
+			} else {
+				return navigate('signup');
 			}
-			else {
-				navigate('signup');
-			}
-			return;
 		}
 
 		if (authUser) {
-			if (
-				(window.location.pathname === '/auth/login') ||
-				(window.location.pathname === '/auth/signup') ||
-				(window.location.pathname === '/auth/reset')
-			) {
-				navigate('/auth')
+			if (authPaths.includes(normalizedPath)) {
+				navigate('/auth');
 			}
+		} else if (normalizedPath === '/auth/user') {
+			navigate('/auth');
 		}
-		else if (window.location.pathname === '/auth/user') {
-			navigate('/auth')
-		}
+
 	})
 
 	return (
 		<div className='auth-container'>
-			<Link to='/'>
-				<button className='back-button'>Go back</button>
-			</Link>
-
 			<Outlet context={[authUser]} />
 		</div>
 	)

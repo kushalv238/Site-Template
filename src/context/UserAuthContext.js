@@ -26,15 +26,16 @@ export function UserAuthContextProvider({ children }) {
     }
 
     async function signUp(name, email, password) {
-        return createUserWithEmailAndPassword(auth, email, password)
-            .then(async (userCredential) => {
-                await updateProfile(userCredential.user, {
-                    displayName: name
-                });
-                return userCredential;
-            });
-    }
+        try {
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          await updateProfile(userCredential.user, { displayName: name });
 
+          return userCredential;
+        } catch (err) {
+          throw new Error(err);
+        }
+      }
+      
     function logOut() {
         return signOut(auth);
     }

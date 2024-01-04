@@ -44,10 +44,14 @@ function App() {
                     <UserAuthContextProvider>
                         <Component.Header onPage={onPage} setOnPage={setOnPage} notTop={notTop.header} />
                         <Routes>
+                            {/* Add protected routes */}
+                            <Link element={<Component.ProtectedRouting />}>
+                                <Link exact path='faqs' element={<Component.FAQ />} />
+                            </Link>
+
                             <Link exact path='/' element={<Component.Home setOnPage={setOnPage} />} />
                             <Link exact path='about' element={<Component.About />} />
                             <Link exact path='contact' element={<Component.Contact />} />
-                            <Link exact path='faqs' element={<Component.FAQ />} />
 
                             <Link exact path='auth' element={<Component.AuthLayout />}>
                                 <Link path='login' element={<Component.Login />} />

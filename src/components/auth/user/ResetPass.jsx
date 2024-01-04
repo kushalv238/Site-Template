@@ -3,65 +3,71 @@ import { Link } from "react-router-dom";
 
 import { auth } from "./../../../config/Firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
+import toast from "react-hot-toast";
+import processMessage from "../../../utility/processMessage";
 
 function ResetPass() {
-  const [values, setValues] = useState({
-    email: "",
-  });
-  const [errorMsg, setErrorMsg] = useState("");
-  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
+	const [values, setValues] = useState({
+		email: "",
+	});
 
-  async function handleResetPass() {
-    setSubmitButtonDisabled(true)
+	const [submitButtonDisabled, setSubmitButtonDisabled] = useState(false);
 
-    if (!values.email) {
-      setErrorMsg("Enter an email")
-    }
-    setErrorMsg("")
+	async function handleResetPass(e) {
+		e.preventDefault();
 
-    await sendPasswordResetEmail(auth, values.email).then(() => {
-      setErrorMsg("Check your inbox for further instructions.")
-      setSubmitButtonDisabled(false)
-    }).catch(err => {
-      setErrorMsg(err.message)
-      setSubmitButtonDisabled(false)
-    })
+		if (!values.email) {
+			toast.error("Enter an email")
+			return
+		}
 
-  };
-  return (
-    <div className="w-96">
-      <div className="auth-wrapper">
-        <p className="heading">Reset Password</p>
+		setSubmitButtonDisabled(true)
+		
+		await sendPasswordResetEmail(auth, values.email).then(() => {
+			toast.success("Check your inbox for further instructions.")
+		}).catch(err => {
+			toast.error(processMessage(err.message))
+		}).finally(() => {
+			setSubmitButtonDisabled(false)
+		})
 
-        <input
-          label="Email"
-          value={values.email}
-          autoFocus
-          onChange={(event) =>
-            setValues((prev) => ({ ...prev, email: event.target.value }))
-          }
-          placeholder="Enter email address"
-        />
+	};
+	return (
+		<div className="auth-wrapper">
+			<div className="auth-cards">
+				<p className="heading">Reset Password</p>
 
-        <div className="-mt-4 justify-end flex hover:underline">
-          <Link to='/auth/login' className="hover:underline">Login</Link>
-        </div>
+				<form onSubmit={handleResetPass} className="auth-form flex flex-col gap-3">
+					<input
+						label="Email"
+						autoFocus
+						value={values.email}
+						onChange={(event) =>
+							setValues((prev) => ({ ...prev, email: event.target.value }))
+						}
+						placeholder="Enter email address"
+					/>
 
-        <b className="error">{errorMsg}</b>
+					<div className="-mt-2 justify-end flex">
+						<Link className="hover:underline cursor-pointer" to='/auth/login'>Login</Link>
+					</div>
 
-        <button className="application-button" disabled={submitButtonDisabled} onClick={handleResetPass}>
-          Rest Password
-        </button>
+					<button className="application-button" disabled={submitButtonDisabled} onClick={e => handleResetPass(e)}>
+						Rest Password
+					</button>
 
-        <p>
-          Don't have an account?{" "}
-          <span>
-            <Link to="/auth/signup">Sign up</Link>
-          </span>
-        </p>
-      </div>
-    </div>
-  );
+				</form>
+			</div>
+			<div className="auth-cards">
+				<p>
+					Don't have an account?{" "}
+					<span className="underline">
+						<Link to="/auth/signup">Sign up</Link>
+					</span>
+				</p>
+			</div>
+		</div>
+	);
 }
 
 export default ResetPass;

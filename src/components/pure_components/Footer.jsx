@@ -65,38 +65,38 @@ const Footer = (props) => {
 						</Link>
 						<Link
 							className='footerLinks'
-							to='/events'
+							to='about'
 							onClick={
 								props.onPage === 2
 								? () => scrollToTop()
 								: () => props.setOnPage(2)
 							}
 						>
-							Events
+							About
 						</Link>
 
 						<Link
 							className='footerLinks'
-							to='/team'
+							to='contact'
 							onClick={
 								props.onPage === 3
 								? () => scrollToTop()
 								: () => props.setOnPage(3)
 							}
 						>
-							Team
+							Contact Us
 						</Link>
 
 						<Link
 							className='footerLinks'
-							to='/contact'
+							to='/faqs'
 							onClick={
 								props.onPage === 4
 								? () => scrollToTop()
 								: () => props.setOnPage(4)
 							}
 						>
-							Contact Us
+							FAQ's
 						</Link>
 					</div>
 					<div className='footer-columns'>

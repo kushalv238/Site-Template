@@ -76,7 +76,7 @@ ul {
 
 .hide,
 .hide>* {
-    display: none;
+    display: none !important;
 }
 
 .container {
@@ -115,10 +115,28 @@ ul {
 
     background-color: dodgerblue;
     color: white;
+
+    overflow: hidden;
+
+    position: relative;
 }
 
 .application-button:hover {
     background-color: rgb(7, 129, 252);
+}
+
+.application-button:disabled {
+    cursor: not-allowed;
+}
+
+.application-button:disabled::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(230, 230, 230, 0.5);
 }
 
 .heading {

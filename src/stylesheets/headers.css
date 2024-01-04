@@ -13,24 +13,17 @@ header {
 
     padding: 0.6rem 2rem 0.6rem 0rem;
 
-    color: white;
-
     overflow: visible;
 
     z-index: 15;
 
-    /* border: 1px solid red; */
-    background: linear-gradient(180deg, rgba(8, 2, 10, 0.17) 47.4%, rgba(8, 2, 10, 0) 100%);
-    mix-blend-mode: normal;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-
-    color: black;
+    color: rgb(97, 97, 97);
 }
 
 .logo {
     display: flex;
     min-width: 20%;
-    max-width: 16rem;
+    max-width: 18rem;
     font-family: 'Audiowide';
 }
 
@@ -45,40 +38,27 @@ header .logo {
 
 .logo a img {
     width: 100%;
-    /* -webkit-filter: invert(100%); 
-    filter: invert(100%); */
 }
 
 .logo a:nth-child(2) {
     display: flex;
     align-items: center;
-    /* justify-content: center; */
 
     width: 70%;
 
     font-size: 2rem;
 }
 
-header ul {
+.navbar {
     display: flex;
     justify-content: center;
     align-items: center;
 
     text-align: center;
-}
 
-header ul li {
-    position: relative;
-}
-
-header>* a {
-    color: inherit;
-    position: relative;
-}
-
-.navbar {
     font-size: 0.9rem;
     font-weight: 300;
+
     letter-spacing: 1.2px;
 
     transform: all 0.5s ease-out;
@@ -90,19 +70,9 @@ header>* a {
     margin: 0px 16px;
     border-radius: 8%;
     text-align: center;
-    
-    color: rgb(100, 100, 100);
-}
-
-.nav-item a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .activePage {
-    /* text-decoration: underline; */
-    /* box-shadow: 0 3px var(--clr-purple2); */
     color: black !important;
     font-weight: 600;
 
@@ -139,8 +109,8 @@ header>* a {
 */
 
 .userProfileImg {
-    /* width: 50%; */
     border-radius: 50%;
+    overflow: hidden;
 }
 
 .notTop {
@@ -178,7 +148,7 @@ header>* a {
     background-color: var(--clr-application-main);
 }
 
-.registerBtn {
+.auth-opt a:nth-of-type(2) {
     background-color: var(--clr-application-main);
     color: white;
     border: 1px solid var(--clr-application-main);
@@ -186,7 +156,7 @@ header>* a {
     border-radius: 30px;
 }
 
-.registerBtn:hover {
+.auth-opt a:nth-of-type(2):hover {
     color: var(--clr-application-main);
     background-color: white;
 }
@@ -195,38 +165,37 @@ header>* a {
     height: 5rem;
 }
 
-@media only screen and (max-width: 1180px) {
+@media only screen and (max-width: 1199px) { 
     .navbar {
-        gap: 0;
-    }
-
-    .navbar li {
-        padding: 3px 10px;
-        font-size: 1.2rem;
-    }
-
-    header {
-        padding: 0.6rem 3rem;
-    }
-
-}
-
-@media only screen and (max-width: 899px) {
-    header ul {
         position: fixed;
         top: 0;
         right: 0;
 
-        display: grid;
-        padding: 5rem 3rem;
+        width: 45%;
+        height: 80vh;
 
-        /* background-color: var(--clr-purple); */
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+        padding: 5rem 1rem;
     }
-    
-    .navbar {
-        /* height: 50% !important;
-        width: 30% !important; */
-        background-color: var(--clr-light-theme);
+
+    .nav-item {
+        width: 50%;
+        margin: 0 !important;
+    }
+
+    .nav-item-auth {
+        width: 100%;
+    }
+
+    .auth-opt {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
     .dropdown-menu {
@@ -243,7 +212,7 @@ header>* a {
     }
 
     .logo a:nth-child(2) {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 
     .header-spacing {
@@ -252,22 +221,22 @@ header>* a {
 
     header {
         padding: 0.6rem 1rem;
-        background-color: var(--clr-light-theme);
     }
 }
 
-@media only screen and (max-width: 640px) {
-    header ul {
+@media only screen and (max-width: 500px) {
+    .navbar {
         width: 100%;
-        /* padding: 0rem 0; */
+        height: 60vh;
     }
-
+    
     .logo {
-        max-width: 12rem;
-        min-width: 60%;
+        max-width: 14rem;
+        min-width: 50%;
     }
 
-    .header-spacing {
-        height: 5rem;
+    .hamburger {
+        margin: 0.5rem;
+        font-size: 1rem;
     }
 }

@@ -27,12 +27,18 @@ const Header = (props) => {
 		console.log(user)
 	}, [])
 
+	const handleCloseNav = () => {
+		scrollToTop()
+		setNavbarActive(false)
+	}
+
 	const { width } = useWindowDimensions();
 
 	const accountInfo =
 		(user && user.photoURL)
-			? <img className="userProfileImg lg:w-12 md:w-20" src={user.photoURL} alt='user profile img' title={user.name} />
-			: <AccountCircleIcon />
+			? <img className="lg:w-12 md:w-20" src={user.photoURL} alt='user profile img' title={user.name} />
+			: <AccountCircleIcon style={{ fontSize: 40 }} />
+
 
 	return (
 		<>
@@ -46,16 +52,13 @@ const Header = (props) => {
 					</Link>
 				</div>
 
-				<ul className={`navbar${(width < 900 && !navbarActive) ? ' hide' : ''}`}>
+				<ul className={`navbar${(width < 1200 && !navbarActive) ? ' hide' : ''}`}>
 					<li className={`nav-item ${props.onPage === 1 ? 'activePage' : ''}`}>
 						<Link
 							to=''
 							onClick={
 								props.onPage === 1
-									? () => {
-										scrollToTop()
-										setNavbarActive(false)
-									}
+									? handleCloseNav
 									: () => props.setOnPage(1)
 							}
 						>
@@ -67,10 +70,7 @@ const Header = (props) => {
 							to="about"
 							onClick={
 								props.onPage === 2
-									? () => {
-										scrollToTop()
-										setNavbarActive(false)
-									}
+									? handleCloseNav
 									: () => props.setOnPage(2)
 							}
 						>About</Link>
@@ -80,10 +80,7 @@ const Header = (props) => {
 							to="contact"
 							onClick={
 								props.onPage === 3
-									? () => {
-										scrollToTop()
-										setNavbarActive(false)
-									}
+									? handleCloseNav
 									: () => props.setOnPage(3)
 							}
 						>Contact Us</Link>
@@ -93,31 +90,54 @@ const Header = (props) => {
 							to="faqs"
 							onClick={
 								props.onPage === 4
-									? () => {
-										scrollToTop()
-										setNavbarActive(false)
-									}
+									? handleCloseNav
 									: () => props.setOnPage(4)
 							}
 						>FAQ's</Link>
 					</li>
 
-					<li className='nav-item' onClick={()=>{
-						scrollToTop()
-						setNavbarActive(false)
-					}}>
+					<li className='nav-item nav-item-auth'>
 						{
 							user ?
-								<Link to="auth">
-									{accountInfo}
-								</Link>
+								<div className='flex justify-center'>
+									<Link
+										to="auth"
+										onClick={
+											() => {
+												handleCloseNav()
+												props.setOnPage(0)
+											}
+										}
+										className='userProfileImg'
+									>
+										{accountInfo}
+									</Link>
+								</div>
 								:
 								<div className='flex items-center gap-3 auth-opt'>
-									<Link to="auth/login">
-										<p className=''>Log in</p>
+									<Link
+										onClick={
+											() => {
+												handleCloseNav()
+												props.setOnPage(0)
+											}
+										}
+
+										to="auth/login"
+									>
+										Log in
 									</Link>
-									<Link to="auth/signup" className='registerBtn'>
-										Register as a voter
+									<Link
+										onClick={
+											() => {
+												handleCloseNav()
+												props.setOnPage(0)
+											}
+										}
+
+										to="auth/signup"
+									>
+										Register
 									</Link>
 								</div>
 						}
@@ -127,7 +147,7 @@ const Header = (props) => {
 					{/* <li
 						onMouseEnter={() => setDropDownActive(true)}
 						onMouseLeave={() => setDropDownActive(false)}
-						onClick={() => { setDropDownActive(!dropDownActive) }}
+						onClick = {() => { setDropDownActive(!dropDownActive) }}
 						className={`dropdown-button${props.onPage === 4 ? ' activePage' : ''}`}
 					>
 						<span className="dropdown">
@@ -149,7 +169,7 @@ const Header = (props) => {
 				</ul>
 
 				<div
-					className={`hamburger${width < 900 ? '' : ' hide'}`}
+					className={`hamburger${width < 1200 ? '' : ' hide'}`}
 					onClick={() => setNavbarActive(!navbarActive)}
 				>
 					<FontAwesomeIcon icon={navbarActive ? faX : faBars} />

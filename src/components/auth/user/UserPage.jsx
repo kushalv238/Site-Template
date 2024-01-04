@@ -1,42 +1,40 @@
-import React, { useState } from 'react'
-
 import { useSelector } from 'react-redux'
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import { useUserAuth } from '../../../context/UserAuthContext'
+import toast from 'react-hot-toast';
+import removeFirebasePrefix from '../../../utility/removeFirebasePrefix';
 
 const User = () => {
     const user = useSelector(state => state.user.userInfo);
 
     const { logOut } = useUserAuth();
 
-    const [message, setMessage] = useState()
-
     const handleLogout = async () => {
         try {
             await logOut()
-            setMessage({ msg: "Logged Out Successfully!", isErr: false })
-            window.location.pathname = "/";
+            toast.success("Successfully Logged Out!", {icon: "👋"})
         } catch (err) {
-            console.log(err)
-            setMessage({ msg: err.message, isErr: true })
+            toast.error(removeFirebasePrefix(err.message))
         }
     }
 
     return (
-        <div className="w-96">
-            <div className='auth-wrapper'>
+        <div className="auth-wrapper">
+            <div className='auth-cards'>
 				{
                     (user && user.photoURL)
                     ? <img className="userProfileImg w-36 self-center" src={user.photoURL} alt='user profile img' title={user.name} />
-                    : <AccountCircleIcon />
+                    : <div className="userAccordianWrapper">
+                        <AccountCircleIcon style={{fontSize: 100}} />
+                    </div>
                 }
 
                 <p><span className='text-xl underline'>Name:</span> {user?.displayName}</p>
                 <p><span className='text-xl underline'>Email:</span> {user?.email}</p>
-
-                <b className={`error${!message?.isErr && ' clr-green'}`}>{message?.msg}</b>
+            </div>
+            <div className="auth-cards">
                 <button className="application-button" onClick={handleLogout}>Logout</button>
             </div>
         </div>

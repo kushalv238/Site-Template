@@ -2,8 +2,6 @@ import { useEffect } from "react";
 
 import './../../stylesheets/home.css'
 
-import { Link } from "react-router-dom";
-
 const Home = (props) => {
 
     useEffect(() => {
