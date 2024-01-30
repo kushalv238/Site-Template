@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { auth } from "./../../../config/Firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import toast from "react-hot-toast";
-import processMessage from "../../../utility/processMessage";
+import processMessage from "../../../utility/processFirebaseMessage";
 
 function ResetPass() {
 	const [values, setValues] = useState({
@@ -34,12 +34,13 @@ function ResetPass() {
 	};
 	return (
 		<div className="auth-wrapper">
-			<div className="auth-cards">
+			<div className="auth-card">
 				<p className="heading">Reset Password</p>
 
 				<form onSubmit={handleResetPass} className="auth-form flex flex-col gap-3">
 					<input
 						label="Email"
+						type="email"
 						autoFocus
 						value={values.email}
 						onChange={(event) =>
@@ -58,11 +59,11 @@ function ResetPass() {
 
 				</form>
 			</div>
-			<div className="auth-cards">
+			<div className="auth-card">
 				<p>
 					Don't have an account?{" "}
 					<span className="underline">
-						<Link to="/auth/signup">Sign up</Link>
+						<Link to="/auth/register">Sign up</Link>
 					</span>
 				</p>
 			</div>

@@ -3,8 +3,6 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 import scrollToTop from './../../utility/scrollToTop'
 
-import './../../stylesheets/toTop.css'
-
 const GoToTop = ({ notTop }) => {
     return (
         <>

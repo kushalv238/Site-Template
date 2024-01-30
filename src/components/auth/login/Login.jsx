@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { useUserAuth } from "../../../context/UserAuthContext";
 
 import GoogleButton from "./../../util-components/GoogleButton";
 
+import processMessage from "../../../utility/processFirebaseMessage";
+
 import toast from "react-hot-toast";
-import processMessage from "../../../utility/processMessage";
 
 function Login() {
     const navigate = useNavigate();
@@ -35,15 +36,15 @@ function Login() {
             setSubmitButtonDisabled(false)
         }
     }
-    
+
     const handleSubmission = async (e) => {
         e.preventDefault()
-        
+
         if (!values.email || !values.pass) {
             toast.error("Fill all fields");
             return;
         }
-        
+
         setSubmitButtonDisabled(true);
 
         try {
@@ -59,11 +60,15 @@ function Login() {
 
     return (
         <div className="auth-wrapper">
-            <div className="auth-cards">
-                <p className="heading">Login</p>
+            <div className="auth-card">
+                <div className="flex flex-wrap items-start">
+                    <p className="heading">Login</p>
+                </div>
+
                 <form onSubmit={handleSubmission} className="auth-form flex flex-col gap-4">
                     <input
                         label="Email"
+                        type="email"
                         value={values.email}
                         autoFocus
                         onChange={(event) =>
@@ -84,18 +89,21 @@ function Login() {
                         <Link className="hover:underline cursor-pointer" to='/auth/reset'>Forgot password?</Link>
                     </div>
 
-                    <button className="application-button auth-btn" disabled={submitButtonDisabled} onClick={handleSubmission}>
+                    <button className="application-button auth-btn" disabled={submitButtonDisabled} onClick={e => handleSubmission(e)}>
                         Login
                     </button>
+
                     <hr className="my-6" />
+                    
                     <GoogleButton className="m-auto mb-4" disabled={submitButtonDisabled} onClickHandler={handleGoogleSignIn} />
                 </form>
             </div>
-            <div className="auth-cards">
+            
+            <div className="auth-card">
                 <p>
-                    Don't have an account?{" "}
+                    New to Application?{" "}
                     <span className="underline">
-                        <Link to="/auth/signup">Sign up</Link>
+                        <Link to="/auth/register">Create an account</Link>
                     </span>
                 </p>
             </div>

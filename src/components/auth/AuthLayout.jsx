@@ -12,7 +12,7 @@ const AuthLayout = ({ setOnPage }) => {
 	const authUser = useSelector(state => state.user.userInfo)
 
 	const normalizedPath = window.location.pathname.replace(/\/+$/, '');
-	const authPaths = ['/auth/login', '/auth/signup', '/auth/reset'].map(path =>
+	const authPaths = ['/auth/login', '/auth/register', '/auth/reset'].map(path =>
 		path.replace(/\/+$/, '')
 	);
 
@@ -21,7 +21,7 @@ const AuthLayout = ({ setOnPage }) => {
 			if (authUser) {
 				return navigate('user');
 			} else {
-				return navigate('signup');
+				return navigate('register');
 			}
 		}
 

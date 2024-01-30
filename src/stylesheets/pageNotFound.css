@@ -1,0 +1,23 @@
+#error-wrapper {
+    margin-top: 4.5rem;
+    padding: 10rem 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    font-size: 2rem;
+}
+
+#error-wrapper p, .redirect-link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.redirect-link {
+    color: dodgerblue;
+    text-decoration: underline;
+
+    font-size: 1.2rem;
+}

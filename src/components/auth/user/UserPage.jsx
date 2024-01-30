@@ -22,7 +22,7 @@ const User = () => {
 
     return (
         <div className="auth-wrapper">
-            <div className='auth-cards'>
+            <div className='auth-card'>
 				{
                     (user && user.photoURL)
                     ? <img className="userProfileImg w-36 self-center" src={user.photoURL} alt='user profile img' title={user.name} />
@@ -34,7 +34,7 @@ const User = () => {
                 <p><span className='text-xl underline'>Name:</span> {user?.displayName}</p>
                 <p><span className='text-xl underline'>Email:</span> {user?.email}</p>
             </div>
-            <div className="auth-cards">
+            <div className="auth-card">
                 <button className="application-button" onClick={handleLogout}>Logout</button>
             </div>
         </div>

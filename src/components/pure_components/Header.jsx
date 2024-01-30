@@ -135,7 +135,7 @@ const Header = (props) => {
 											}
 										}
 
-										to="auth/signup"
+										to="auth/register"
 									>
 										Register
 									</Link>

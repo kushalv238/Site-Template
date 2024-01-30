@@ -43,6 +43,7 @@ function App() {
                 <div className='col'>
                     <UserAuthContextProvider>
                         <Component.Header onPage={onPage} setOnPage={setOnPage} notTop={notTop.header} />
+                        
                         <Routes>
                             {/* Add protected routes */}
                             <Link element={<Component.ProtectedRouting />}>
@@ -50,16 +51,22 @@ function App() {
                             </Link>
 
                             <Link exact path='/' element={<Component.Home setOnPage={setOnPage} />} />
-                            <Link exact path='about' element={<Component.About />} />
-                            <Link exact path='contact' element={<Component.Contact />} />
-
+                            
                             <Link exact path='auth' element={<Component.AuthLayout />}>
                                 <Link path='login' element={<Component.Login />} />
-                                <Link path='signup' element={<Component.Signup />} />
+                                <Link path='register' element={<Component.Register />} />
                                 <Link path='user' element={<Component.UserPage />} />
                                 <Link path='reset' element={<Component.ResetPass />} />
                             </Link>
+                            
+                            <Link exact path='about' element={<Component.About />} />
+                            
+                            <Link exact path='contact' element={<Component.Contact />} />
+
+                            <Link path="*" element={<Component.PageNotFound />} />
+
                         </Routes>
+                        
                         <Component.GoToTop notTop={notTop.toTopButton} />
                         <Component.Footer onPage={onPage} setOnPage={setOnPage} />
                     </UserAuthContextProvider>

@@ -22,7 +22,7 @@
     
     /* colors */
 
-    --clr-grey: hsla(0,0%,100%,.507);
+    --clr-grey: hsla(0,0%,100%,.5);
 
     --clr-application-main: #93278f;
     --clr-application-main2: #460D86;
@@ -31,7 +31,7 @@
 
     /* light mode themes */
     --clr-light-bg: white;
-    --clr-light-theme: rgb(146, 146, 250);
+    --clr-light-theme: rgb(162, 162, 220);
     
     /* dark mode themes */
     --clr-dark-bg: #333333;
@@ -70,6 +70,27 @@ a {
 
 ul {
     list-style-type: none;
+}
+
+/* Application classes */
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
+    border-radius: 8px;
+
+    margin: 1rem;
+    padding: 0.4rem 0.8rem;
+
+    background-color: white;
+    color: black;
+
+    box-shadow: 0px 0px 15px var(--clr-application-main2);
+
+    cursor: pointer;
+    z-index: 5;
 }
 
 /* utility classes */
